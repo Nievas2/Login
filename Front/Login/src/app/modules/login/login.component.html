@@ -1,0 +1,196 @@
+<div
+  class="container-fluid"
+  style="
+    background: rgb(3, 0, 52);
+    background: linear-gradient(
+      90deg,
+      rgba(3, 0, 52, 1) 0%,
+      rgba(35, 35, 64, 1) 39%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  "
+>
+  <body
+    *ngIf="registerLogin"
+    style="
+      background: rgb(3, 0, 52);
+      background: linear-gradient(
+        90deg,
+        rgba(3, 0, 52, 1) 0%,
+        rgba(35, 35, 64, 1) 39%,
+        rgba(0, 212, 255, 1) 100%
+      );
+    "
+  >
+    <div
+      class="container d-flex justify-content-center align-items-center"
+      style="height: 100vh"
+    >
+      <div
+        [@flip]="state"
+        class="card"
+        style="
+          width: 30rem;
+          border-color: #fff;
+          box-shadow: 1px 1px 5px 1px #fff;
+        "
+      >
+        <div class="card-body" id="card-body">
+          <div class="row">
+            <h5 class="card-title">Inicio de Sesión</h5>
+          </div>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Correo Electrónico</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Ingresa tu correo electrónico"
+              />
+            </div>
+          </form>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Contraseña"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+          <button
+            (click)="stateLogin()"
+            type="button"
+            class="btn btn-secondary"
+            id="registroBtn"
+          >
+            Registro
+          </button>
+          <h5>
+            Si nunca se a logueado por favor registrese
+            <a (click)="stateLogin()">aqui</a>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </body>
+  <body
+    style="
+      background: rgb(3, 0, 52);
+      background: linear-gradient(
+        90deg,
+        rgba(3, 0, 52, 1) 0%,
+        rgba(35, 35, 64, 1) 39%,
+        rgba(0, 212, 255, 1) 100%
+      );
+    "
+    *ngIf="!registerLogin"
+  >
+    <div
+      class="container d-flex justify-content-center align-items-center"
+      style="height: 100vh"
+    >
+      <div
+        [@flip]="state"
+        class="card"
+        style="
+          width: 30rem;
+          border-color: #fff;
+          box-shadow: 1px 1px 5px 1px #fff;
+        "
+      >
+        <div class="card-body" id="card-body">
+          <div class="row">
+            <h5 class="card-title">Registro</h5>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="createUser()">
+            <div>
+              <label> <i class="fa-solid fa-user"></i> Nombres </label>
+              <input
+                class="form-control"
+                formControlName="firstName"
+                name="firstName"
+                type="text"
+                placeholder="Escribe tus Nombres"
+              />
+              <span
+                *ngIf="
+                  form.get('firstName')?.hasError('required') &&
+                  form.get('firstName')?.touched
+                "
+              >
+                El campo es <strong>requerido</strong>
+              </span>
+            </div>
+            <label> <i class="fa-solid fa-user"></i> Apellidos </label>
+            <input
+              class="form-control"
+              formControlName="lastName"
+              name="lastName"
+              type="text"
+              placeholder="Escribe tus Apellidos"
+            />
+            <span
+              *ngIf="
+                form.get('lastName')?.hasError('required') &&
+                form.get('lastName')?.touched
+              "
+            >
+              El campo es <strong>requerido</strong>
+            </span>
+
+            <label><i class="fa-solid fa-envelope"></i> Email</label>
+            <input
+              class="form-control"
+              formControlName="email"
+              name="email"
+              type="email"
+              placeholder="Escribe tu email"
+            />
+            <span
+              *ngIf="
+                form.get('email')?.hasError('required') &&
+                form.get('email')?.touched
+              "
+            >
+              El campo donde es <strong>requerido</strong>
+            </span>
+            <label> <i class="fa-solid fa-lock"></i> Contraseña</label>
+            <input
+              class="form-control"
+              formControlName="password"
+              name="password"
+              type="password"
+              placeholder="************"
+            />
+            <span
+              *ngIf="
+                form.get('password')?.hasError('required') &&
+                form.get('password')?.touched
+              "
+            >
+              El campo es <strong>requerido</strong>
+            </span>
+            <br />
+            <button
+              [disabled]="form.invalid"
+              class="submit"
+              type="submit"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Suscribirse
+            </button>
+          </form>
+          <h5>
+            Si nunca se a logueado por favor registrese
+            <button (click)="stateLogin()">aqui</button>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </body>
+</div>
