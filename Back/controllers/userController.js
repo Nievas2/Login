@@ -1,7 +1,6 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const { UserService } = require('../services');
-const transporter = require('../helpers');
 
 const saltRounds = 10;
 
@@ -137,10 +136,6 @@ module.exports = {
   deleteUser,
   updatePassword,
   getUserByEmail,
-  inscription,
-  removeCourseRegistration,
-  validateCode,
-  createCode,
   patchAdmins,
   deleteAdmins,
 };

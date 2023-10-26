@@ -8,16 +8,19 @@ const { authMW, adminCheck } = require('../middleware/authentication.middleware'
 const app = Express();
 
 const authRouter = require('./auth');
+const userRouter = require("./userRouter")
 // Rutas
 
 
-app.use('/auth', authRouter);
+
 // use=
 app.use('/ping', (req, res) => {
   res.json({
     response: 'pong!',
   });
 });
+app.use('/auth', authRouter);
+app.use("/user", userRouter);
 app.use('/', rootPath.handler);
 app.use(rootPath.setHeaders);
 app.use(errors.handler);
