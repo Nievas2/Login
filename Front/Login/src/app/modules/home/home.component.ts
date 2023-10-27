@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class HomeComponent {
   token: string | null = null;
   admin : boolean = false;
   register : boolean = false;
-  constructor(private loginSvc:AuthService){}
+  constructor(private loginSvc:AuthService, private router: Router){}
   ngOnInit(): void {
     this.loginSvc.token.subscribe(
       (token) => {
@@ -30,5 +31,9 @@ export class HomeComponent {
     )
     
     
+  }
+  LogOut(){
+    localStorage.clear()
+    window.location.reload();
   }
 }

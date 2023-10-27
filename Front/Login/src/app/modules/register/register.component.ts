@@ -51,7 +51,7 @@ export class RegisterComponent {
 
     this.userService.postUser(this.user)
     .subscribe(
-      (data) => {this.registro= true; this.router.navigateByUrl('');},
+      (data) => {this.registro= true; window.location.reload();},
       (error) => {
         console.log(error);
       }

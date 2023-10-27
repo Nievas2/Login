@@ -31,7 +31,7 @@ export class UserService {
     return this.httpUser.get(this.apiUrl+"/category")
   }
   postUser(user: User){
-    return this.httpUser.post(this.apiUrl, user);
+    return this.httpUser.post(this.apiUrl + "/user", user);
   }
   removeCourseRegistration(idCourse:number,idUser:number ){
     const idCourseSelect = idCourse;
