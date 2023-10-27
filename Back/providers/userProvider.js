@@ -96,6 +96,7 @@ const validateUser = async (emailSelect, password) => {
   });
   if (userData == null || userData == undefined) { return null; }
   const hashedPassword = userData.password;
+  if(hashedPassword == null || hashedPassword == undefined){ return null; }
   const match = await bcrypt.compare(password, hashedPassword);
   if (match) {
     try {

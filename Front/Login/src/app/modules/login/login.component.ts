@@ -73,6 +73,7 @@ export class LoginComponent {
       const data = this.loginSvc.login(this.loginData);
      /*  this.toastr.success('Hello world!', 'Toastr fun!'); */
       /* this.router.navigateByUrl(''); */
+      console.log(data)
       if(data == undefined)this.toastr.error("Error", "Contraseña o email incorrectos")
     } catch {
       /* this.loginError = "Email o contraseña incorrecta."; */
