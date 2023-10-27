@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
 import { LoginData } from 'src/app/interfaces/loginData';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -54,6 +55,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private loginSvc:AuthService,
     private router: Router,
+    private toastr: ToastrService,
   ) {
     this.formLogin = this.fb.group({
       email: ['', Validators.required],
@@ -68,12 +70,15 @@ export class LoginComponent {
       password: this.formLogin.value.password,
     }
     try {
-      this.loginSvc.login(this.loginData);
-      this.router.navigateByUrl('');
+      const data = this.loginSvc.login(this.loginData);
+     /*  this.toastr.success('Hello world!', 'Toastr fun!'); */
+      /* this.router.navigateByUrl(''); */
+      if(data == undefined)this.toastr.error("Error", "Contraseña o email incorrectos")
     } catch {
       /* this.loginError = "Email o contraseña incorrecta."; */
+      
+      this.toastr.error("Error", "Contraseña o email incorrectos")
     }
-    this.router.navigateByUrl('');
     
   }
 

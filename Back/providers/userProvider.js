@@ -94,7 +94,7 @@ const validateUser = async (emailSelect, password) => {
   const userData = await User.findOne({
     where: { email: emailSelect },
   });
-  if (userData == null) { return null; }
+  if (userData == null || userData == undefined) { return null; }
   const hashedPassword = userData.password;
   const match = await bcrypt.compare(password, hashedPassword);
   if (match) {
