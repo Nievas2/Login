@@ -1,27 +1,5 @@
-<div
-  class="container-fluid"
-  style="
-    background: rgb(3, 0, 52);
-    background: linear-gradient(
-      90deg,
-      rgba(3, 0, 52, 1) 0%,
-      rgba(35, 35, 64, 1) 39%,
-      rgba(0, 212, 255, 1) 100%
-    );
-  "
->
-  <body
-    *ngIf="registerLogin"
-    style="
-      background: rgb(3, 0, 52);
-      background: linear-gradient(
-        90deg,
-        rgba(3, 0, 52, 1) 0%,
-        rgba(35, 35, 64, 1) 39%,
-        rgba(0, 212, 255, 1) 100%
-      );
-    "
-  >
+<div class="container-fluid backgroundColor">
+  <body *ngIf="registerLogin" class="backgroundColor">
     <div
       class="container d-flex justify-content-center align-items-center"
       style="height: 100vh"
@@ -39,36 +17,52 @@
           <div class="row">
             <h5 class="card-title">Inicio de Sesión</h5>
           </div>
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Correo Electrónico</label>
+          <form [formGroup]="formLogin" (ngSubmit)="login()">
+            <div>
+              <label class="form-label">Correo Electrónico</label>
               <input
-                type="email"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                formControlName="email"
+                type="email"
                 placeholder="Ingresa tu correo electrónico"
               />
+              <span
+                *ngIf="
+                  formLogin.get('email')?.hasError('required') &&
+                  formLogin.get('email')?.touched
+                "
+              >
+                El campo Email es <strong>requerido</strong>
+              </span>
             </div>
-          </form>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Contraseña"
-            />
+            <div>
+              <label class="form-label">Contraseña</label>
+              <input
+                class="form-control"
+                formControlName="password"
+                type="password"
+                placeholder="************"
+              />
+              <span
+                *ngIf="
+                  formLogin.get('password')?.hasError('required') &&
+                  formLogin.get('password')?.touched
+                "
+              >
+                El campo Contraseña es <strong>requerido</strong>
+              </span>
+            </div>
+          
+          <div class="row mt-3">
+            <button
+              [disabled]="formLogin.invalid"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Iniciar Sesión
+            </button>
           </div>
-          <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-          <button
-            (click)="stateLogin()"
-            type="button"
-            class="btn btn-secondary"
-            id="registroBtn"
-          >
-            Registro
-          </button>
+        </form>
           <h5>
             Si nunca se a logueado por favor registrese
             <a (click)="stateLogin()">aqui</a>
@@ -77,18 +71,7 @@
       </div>
     </div>
   </body>
-  <body
-    style="
-      background: rgb(3, 0, 52);
-      background: linear-gradient(
-        90deg,
-        rgba(3, 0, 52, 1) 0%,
-        rgba(35, 35, 64, 1) 39%,
-        rgba(0, 212, 255, 1) 100%
-      );
-    "
-    *ngIf="!registerLogin"
-  >
+  <body class="backgroundColor" *ngIf="!registerLogin">
     <div
       class="container d-flex justify-content-center align-items-center"
       style="height: 100vh"
@@ -102,95 +85,29 @@
           box-shadow: 1px 1px 5px 1px #fff;
         "
       >
-        <div class="card-body" id="card-body">
-          <div class="row">
-            <h5 class="card-title">Registro</h5>
-          </div>
-          <form [formGroup]="form" (ngSubmit)="createUser()">
-            <div>
-              <label> <i class="fa-solid fa-user"></i> Nombres </label>
-              <input
-                class="form-control"
-                formControlName="firstName"
-                name="firstName"
-                type="text"
-                placeholder="Escribe tus Nombres"
-              />
-              <span
-                *ngIf="
-                  form.get('firstName')?.hasError('required') &&
-                  form.get('firstName')?.touched
-                "
-              >
-                El campo es <strong>requerido</strong>
-              </span>
-            </div>
-            <label> <i class="fa-solid fa-user"></i> Apellidos </label>
-            <input
-              class="form-control"
-              formControlName="lastName"
-              name="lastName"
-              type="text"
-              placeholder="Escribe tus Apellidos"
-            />
-            <span
-              *ngIf="
-                form.get('lastName')?.hasError('required') &&
-                form.get('lastName')?.touched
-              "
-            >
-              El campo es <strong>requerido</strong>
-            </span>
-
-            <label><i class="fa-solid fa-envelope"></i> Email</label>
-            <input
-              class="form-control"
-              formControlName="email"
-              name="email"
-              type="email"
-              placeholder="Escribe tu email"
-            />
-            <span
-              *ngIf="
-                form.get('email')?.hasError('required') &&
-                form.get('email')?.touched
-              "
-            >
-              El campo donde es <strong>requerido</strong>
-            </span>
-            <label> <i class="fa-solid fa-lock"></i> Contraseña</label>
-            <input
-              class="form-control"
-              formControlName="password"
-              name="password"
-              type="password"
-              placeholder="************"
-            />
-            <span
-              *ngIf="
-                form.get('password')?.hasError('required') &&
-                form.get('password')?.touched
-              "
-            >
-              El campo es <strong>requerido</strong>
-            </span>
-            <br />
-            <button
-              [disabled]="form.invalid"
-              class="submit"
-              type="submit"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Suscribirse
-            </button>
-          </form>
-          <h5>
-            Si nunca se a logueado por favor registrese
-            <button (click)="stateLogin()">aqui</button>
-          </h5>
-        </div>
+        <app-register></app-register>
+        <h5>
+          Si nunca se a logueado por favor registrese
+          <a (click)="stateLogin()">aqui</a>
+        </h5>
       </div>
     </div>
   </body>
+  <div
+  
+  class="rounded m-2 p-2 col"
+  style="
+    position: absolute;
+    height: 10rem;
+    width: 15rem;
+    background-color: #ffffff4f;
+    color: #000000;
+    text-shadow: 1px 1px 1px #0000;
+  "
+>
+  <h5 class="pb-2">
+    Porfavor no ingresar contraseñas personales es una página meramente de practica 
+  </h5>
+  <h4>¡¡Muchas Gracias!!</h4>
+</div>
 </div>
