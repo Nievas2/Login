@@ -81,18 +81,15 @@
         El campo es <strong>requerido</strong>
       </span>
     </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" formControlName="admin" name="admin" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-      <label class="form-check-label">Administrador</label>
-      <span
-      *ngIf="
-        form.get('password')?.hasError('required') &&
-        form.get('password')?.touched
-      "
-    >
-      El campo es <strong>requerido</strong>
-    </span>
-    </div>
+
+    <input
+    formControlName="admin"
+    type="checkbox"
+    class="form-check-input mt-2"
+    
+  />
+  <label class="form-label mb-0 p-0 p-1">Administrador</label>
+
     <div class="row mt-3" style="background-color: #002999">
       <button  [disabled]="form.invalid" class="submit text-white btn btn-primary" type="submit">
         Suscribirse

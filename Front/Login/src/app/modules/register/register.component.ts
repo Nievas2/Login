@@ -53,7 +53,6 @@ export class RegisterComponent {
       password: this.form.value.password,
       admin: this.form.value.admin,
     };
-console.log(this.user.admin)
     this.userService.postUser(this.user).subscribe(
       (data) => {
         this.toastr.success('Se registro correctamente');
@@ -75,7 +74,7 @@ console.log(this.user.admin)
       lastName: '',
       email: '',
       password: '',
-      admin:'',
+      admin:false,
     });
   }
 }
