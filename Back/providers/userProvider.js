@@ -100,7 +100,7 @@ const validateUser = async (emailSelect, password) => {
   if (match) {
     try {
       const user = await User.findOne({
-        where: { email: emailSelect, active: true },
+        where: { email: emailSelect},
       });
       if (user) {
         return user;
