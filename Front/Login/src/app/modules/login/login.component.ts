@@ -40,6 +40,8 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent {
   state = 'normal';
   registerLogin: boolean = true;
+  token: string | null = null;
+  register: boolean = false;
   toggleFlip() {
     this.state = this.state === 'normal' ? 'flipped' : 'normal';
     this.registerLogin = !this.registerLogin;
@@ -63,22 +65,32 @@ export class LoginComponent {
     });
     this.loginDataForm();
   }
-
+  ngOnInit(): void {
+    this.loginSvc.isRegistered.subscribe(
+      (isRegistered)=>{
+        this.register = isRegistered
+      }
+    )
+  }
   login () {
     this.loginData = {
       email: this.formLogin.value.email,
       password: this.formLogin.value.password,
     }
     try {
-      const data = this.loginSvc.login(this.loginData);
-     /*  this.toastr.success('Hello world!', 'Toastr fun!'); */
-      /* this.router.navigateByUrl(''); */
-      console.log(data)
-      if(data == undefined)this.toastr.error("Error", "Contraseña o email incorrectos")
-    } catch {
-      /* this.loginError = "Email o contraseña incorrecta."; */
+      this.loginSvc.login(this.loginData).subscribe(
+        (data)=>{
+          this.toastr.success("Correcto inicio de sesion")
+      },
       
-      this.toastr.error("Error", "Contraseña o email incorrectos")
+      (error)=>{
+        this.toastr.error("Contraseña o email incorrectos")
+      }
+      );
+
+    } catch {
+      this.toastr.error("Contraseña o email incorrectos")
+
     }
     
   }

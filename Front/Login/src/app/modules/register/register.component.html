@@ -3,7 +3,7 @@
     <h5 class="card-title">Registro</h5>
   </div>
   <form [formGroup]="form" (ngSubmit)="createUser()">
-    <div>
+    <div class="mb-2">
       <label> <i class="fa-solid fa-user"></i> Nombres </label>
       <input
         class="form-control"
@@ -21,7 +21,7 @@
         El campo Nombres es <strong>requerido</strong>
       </span>
     </div>
-    <div>
+    <div class="mb-2">
       <label> <i class="fa-solid fa-user"></i> Apellidos </label>
       <input
         class="form-control"
@@ -39,7 +39,7 @@
         El campo es <strong>requerido</strong>
       </span>
     </div>
-    <div>
+    <div class="mb-2">
       <label><i class="fa-solid fa-envelope"></i> Email</label>
       <input
         class="form-control"
@@ -53,10 +53,17 @@
           form.get('email')?.hasError('required') && form.get('email')?.touched
         "
       >
-        El campo donde es <strong>requerido</strong>
+        El campo email es <strong>requerido</strong>
       </span>
-    </div>
-    <div>
+      <span
+        *ngIf="
+          form.get('email')?.hasError('email') && form.get('email')?.touched
+        "
+      >
+      Por favor, introduce un email válido.
+      </span>
+    </div >
+    <div class="mb-2">
       <label> <i class="fa-solid fa-lock"></i> Contraseña</label>
       <input
         class="form-control"
@@ -73,6 +80,18 @@
       >
         El campo es <strong>requerido</strong>
       </span>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" formControlName="admin" name="admin" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label">Administrador</label>
+      <span
+      *ngIf="
+        form.get('password')?.hasError('required') &&
+        form.get('password')?.touched
+      "
+    >
+      El campo es <strong>requerido</strong>
+    </span>
     </div>
     <div class="row mt-3" style="background-color: #002999">
       <button  [disabled]="form.invalid" class="submit text-white btn btn-primary" type="submit">

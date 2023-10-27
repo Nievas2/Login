@@ -20,7 +20,7 @@
               <h5 class="card-title">Inicio de Sesión</h5>
             </div>
             <form [formGroup]="formLogin" (ngSubmit)="login()">
-              <div>
+              <div class="mb-2">
                 <label class="form-label">Correo Electrónico</label>
                 <input
                   class="form-control"
@@ -37,7 +37,7 @@
                   El campo Email es <strong>requerido</strong>
                 </span>
               </div>
-              <div>
+              <div class="mb-2">
                 <label class="form-label">Contraseña</label>
                 <input
                   class="form-control"
@@ -65,7 +65,7 @@
                 </button>
               </div>
             </form>
-            <h5>
+            <h5 class="text-center">
               Si nunca se a logueado por favor registrese
               <a (click)="stateLogin()">aqui</a>
             </h5>
@@ -85,12 +85,12 @@
             width: 30rem;
             border-color: #fff;
             box-shadow: 1px 1px 5px 1px #fff;
-            margin-top: 150px;
+            margin-top: 180px;
           "
         >
           <app-register></app-register>
-          <h5>
-            Si nunca se a logueado por favor registrese
+          <h5 class="text-center">
+            Si ya tiene una cuenta vaya
             <a (click)="stateLogin()">aqui</a>
           </h5>
         </div>
