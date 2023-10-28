@@ -18,40 +18,53 @@
     <h4>!!Gracias!!</h4>
   </div>
   <!-- ADMINS -->
-  <div *ngIf="admin">
+   <div *ngIf="admin">
     <app-admin></app-admin>
   </div>
   <!-- LOGIN Y REGISTER -->
-  <div *ngIf="!register">
+   <div *ngIf="!register">
     <app-login></app-login>
   </div>
   <div *ngIf="register">
     <body class="backgroundColor">
       <div
         class="container d-flex justify-content-center align-items-center"
-        style="height: 800px;"
+        style="height: 800px"
       >
         <div
+          #miDiv
           class="card"
-          style="
-            width: 30rem;
-            border-color: #fff;
-            box-shadow: 1px 1px 5px 1px #fff;
-            
-          "
+          style="width: 30rem; border-color: #fff"
+          [style.box-shadow]="'1px 1px 5px 5px ' + initialColor"
         >
           <div class="card-body" id="card-body">
             <div class="row">
-              <h5 class="card-title">Estas Logueado</h5>
+              <h3 class="card-title">Ya estas Logueado</h3>
             </div>
+           
+
+            
+            <h4>Elige un color</h4>
+            <input type="color" (input)="cambiarSombra($event)" value="{{initialColor}}"/>
             <br>
+            <button
+              class="btn btn-primary"
+              *ngIf="active"
+              (click)="savedColor()"
+            >
+              Guardar color elegido
+            </button>
+            <br />
             <div>
-              <h3>¡¡Muchas gracias por probar la pagina!!</h3>
+              <h5>¡¡Muchas gracias por probar la pagina!!</h5>
             </div>
             <div class="row">
-              <button class="btn btn-primary" (click)="LogOut()">Cerrar sesion</button>
+              <button class="btn btn-primary" (click)="LogOut()">
+                Cerrar sesion
+              </button>
             </div>
           </div>
+
         </div>
       </div>
     </body>

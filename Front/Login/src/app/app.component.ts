@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(){
+    const color = localStorage.getItem("boxShadow")
+    if(color == null || color == undefined)localStorage.setItem("boxShadow", "#fff")
+  }
 }
