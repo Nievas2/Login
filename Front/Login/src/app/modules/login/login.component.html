@@ -11,9 +11,9 @@
           style="
             width: 30rem;
             border-color: #fff;
-            box-shadow: 1px 1px 5px 1px #fff;
             margin-top: 150px;
           "
+          [style.box-shadow]="'1px 1px 5px 5px ' + initialColor"
         >
           <div class="card-body" id="card-body">
             <div class="row">
@@ -84,9 +84,9 @@
           style="
             width: 30rem;
             border-color: #fff;
-            box-shadow: 1px 1px 5px 1px #fff;
             margin-top: 200px;
           "
+          [style.box-shadow]="'1px 1px 5px 5px ' + initialColor"
         >
           <app-register></app-register>
           <h5 class="text-center">

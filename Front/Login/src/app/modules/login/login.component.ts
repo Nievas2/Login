@@ -46,6 +46,8 @@ export class LoginComponent {
     this.state = this.state === 'normal' ? 'flipped' : 'normal';
     this.registerLogin = !this.registerLogin;
   }
+  initialColor : string | null = "";
+  color : string | null = "";
   formLogin: FormGroup;
   registro: boolean = false;
   loginData: LoginData = {
@@ -64,6 +66,8 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
     this.loginDataForm();
+    this.color =localStorage.getItem("boxShadow");
+    this.initialColor = this.color
   }
   ngOnInit(): void {
     this.loginSvc.isRegistered.subscribe(
